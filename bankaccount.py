@@ -1,3 +1,21 @@
+class user:
+    def __init__(self, username, email):
+            self.username = username
+            self.email = email
+            self.account = BankAccount(int_rate=0.02, balance=20)
+
+    def make_deposit(self, amount):
+        self.account.deposit(amount)
+        return self
+
+    def make_withdrawal(self, amount):
+        self.account.withdraw(amount)
+        return self
+
+    def display_user_balance(self):
+        self.account.display_account_info()
+
+
 class BankAccount:
 	def __init__(self, int_rate=0, balance=0):
             self.int_rate = int_rate
@@ -22,8 +40,6 @@ class BankAccount:
                 self.balance = self.balance * self.int_rate + self.balance
             return self
 
-bob = BankAccount(0.03, 200)
-bob.deposit(300).deposit(400).withdraw(500).yield_interest().display_account_info()
+bob = user("bob", "bob@dogbot")
 
-john = BankAccount(0.03, 400)
-john.deposit(40).deposit(50).withdraw(10).withdraw(5).withdraw(2).withdraw(1).yield_interest().display_account_info()
+bob.make_deposit(200).display_user_balance()
